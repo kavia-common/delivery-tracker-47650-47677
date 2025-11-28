@@ -1,104 +1,291 @@
-/* CSS Variables for Theme Management */
+/* Ocean Professional Theme Tokens */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --primary: #2563EB;
+  --secondary: #F59E0B;
+  --success: #10B981;
+  --error: #EF4444;
+  --background: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6B7280;
+  --border: #e5e7eb;
+  --ring: rgba(37, 99, 235, 0.35);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* App shell */
+.ocean-app {
+  position: relative;
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  padding-bottom: 24px;
 }
 
-.App-logo {
-  height: 40vmin;
+.ocean-gradient {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(37, 99, 235, 0.12), transparent),
+              radial-gradient(1000px 500px at 110% 10%, rgba(245, 158, 11, 0.08), transparent),
+              linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249,250,251,1) 40%);
   pointer-events: none;
+  z-index: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Header/Search */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: saturate(160%) blur(6px);
+  background: rgba(255,255,255,0.7);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--text);
+}
+
+.brand-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), #1e40af);
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 14px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 10px 8px 12px;
+  box-shadow: var(--shadow);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 10px 8px;
+  color: var(--text);
+  background: transparent;
+}
+
+.search-btn {
+  border: none;
+  background: linear-gradient(135deg, var(--primary), #1d4ed8);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, opacity 0.12s ease;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.25);
+}
+
+.search-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.search-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.config-banner {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff7ed;
+  border: 1px dashed #fdba74;
+  color: #9a3412;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+/* Layout */
+.layout {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 16px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
   }
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+/* Cards / Surfaces */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* Main content */
+.main-content {
+  min-height: 400px;
+}
+
+/* Shipments List */
+.shipments {
+  padding: 12px;
+}
+
+.section-title {
+  margin: 4px 4px 12px 6px;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+}
+
+.shipment-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 8px 4px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), #fff);
+}
+
+.shipment-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 22px rgba(2, 6, 23, 0.05);
+}
+
+.shipment-title {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.shipment-meta {
+  display: flex;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.status-pill {
+  align-self: start;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: white;
+}
+
+.status-in-transit { background: linear-gradient(135deg, var(--primary), #1d4ed8); }
+.status-out-for-delivery { background: linear-gradient(135deg, var(--secondary), #d97706); }
+.status-delivered { background: linear-gradient(135deg, #10B981, #059669); }
+.status-exception { background: linear-gradient(135deg, var(--error), #b91c1c); }
+
+/* Side panel */
+.side-panel .panel-inner {
+  padding: 12px;
+}
+
+.notification-item {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 8px 4px;
+  background: #ffffffcc;
+}
+
+.note-time {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Empty/loading/error */
+.empty, .loading, .error {
+  margin: 24px;
+  padding: 24px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Drawer/Modal for details */
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: min(420px, 100%);
+  height: 100%;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  z-index: 30;
   display: flex;
   flex-direction: column;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 16px;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
-}
-
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+.drawer-body {
+  padding: 16px;
+  overflow: auto;
 }
